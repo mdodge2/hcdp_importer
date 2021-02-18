@@ -1,0 +1,918 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html>
+    <head>
+      <title>Rainfall Atlas of Hawaii | Downloads</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <base href="http://rainfall.geography.hawaii.edu/"></base>
+      <!--<link rel="stylesheet" href="assets/files/css/reset.css" type="text/css" media="screen" />-->  
+      <link rel="stylesheet" href="assets/templates/rainfallatlas/default.css" type="text/css" media="screen" />
+      <link rel="stylesheet" href="assets/templates/rainfallatlas/mbest.css" type="text/css" media="screen" />
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+      <link rel="stylesheet" href="assets/templates/rainfallatlas/jquery_ui/css/redmond/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" />
+<script type="text/javascript" src="assets/templates/rainfallatlas/jquery_ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.cookie.js"></script>
+<script type="text/javascript">
+function call_disclaimer()
+{
+
+  $(".call_disclaimer2").live("click",function(event){
+    event.preventDefault();
+    $("#disclaimer2").dialog({
+         width:900, 
+         height:550, 
+         draggable:false,
+         resizable:false,
+         modal:true,
+         buttons:{
+                  'OK':function(){
+                      $(this).dialog("close");
+                    }
+                 }
+        });
+  })
+  
+  if($.cookie('readCoU49') != 'yes')
+  {
+    $("#disclaimer").dialog({
+         width:900, 
+         height:580, 
+         modal:true, 
+         draggable:false,
+         resizable:false,
+         closeOnEscape:false,
+         open: function(event, ui) { $(".ui-dialog-titlebar-close").hide(); },
+         buttons:{
+                  'Cancel':function(){history.back();},
+                  'Agree':function(){
+                                   if($("#readCoU").attr("checked") == 'checked')
+                                   {
+                                     $.cookie('readCoU49','yes');
+                                   }  
+                                   else
+                                   {
+                                     $.cookie('readCoU49','no');
+                                   }
+                                    $(this).dialog('close');
+                    }
+                 }
+        });
+    }
+
+}
+</script>
+      <script type="text/javascript">
+          $(document).ready(function(){
+              call_disclaimer();
+              $("#downloadfile").accordion({
+                  active:0,
+                  autoHeight:false,
+                  collapsible:true
+               });
+              $(".dnlBtn").button();
+
+$("#content img").live("click",function(){
+
+  if($(this).attr("class") != "nopopup"){
+
+  var srcimg = $(this).attr("src");
+  var altimg = $(this).attr("alt");
+  if(altimg == "")
+  {
+    altimg = "image";
+  }
+  srcimg = srcimg.replace(/\/|\./g,"");
+  var imgdivid = "#" + String(srcimg);
+  var imgdialog = $("<div/>").attr("id",srcimg).attr("title",altimg);
+
+  if($(imgdivid).length == 0)
+  {
+    var winHeight = $(window).height() * 0.7;
+    var winWidth = $(window).width() * 0.7;
+
+    var imgdom = $(this).clone();
+
+    imgdom.removeAttr("width");
+    imgdom.removeAttr("height");
+    imgdom.css("margin",0);
+    imgdom.css("padding",0);
+
+    $("body").append(imgdom.removeClass());
+
+    var imgwidth = imgdom.width();
+    var imgheight = imgdom.height();
+
+    if(imgwidth > winWidth || imgheight > winHeight )
+    {
+      if(imgheight > winHeight)
+      {
+        imgdom.css("height",winHeight);
+        dialogHeight = winHeight + 32;
+        dialogWidth= winHeight / imgheight * imgwidth + 34;
+      }
+      else
+      {
+        imgdom.css("width",winWidth);
+        dialogHeight = winWidth / imgwidth * imgheight + 32;
+        dialogWidth= winWidth + 34; 
+      }
+    }
+    else
+    {
+      dialogWidth = imgwidth + 34;
+      dialogHeight = imgheight + 32;
+    }
+
+    imgdialog.html($("<p/>").css("text-align","center").append(imgdom));
+
+    imgdialog.dialog({
+        minWidth:dialogWidth , 
+        minHeight:dialogHeight , 
+        width:dialogWidth, 
+        resize:function(){
+           if($(this).height() <= imgheight && $(this).width() <= imgwidth && $(this).height() >= dialogHeight && $(this).width() >= dialogWidth)
+           {
+             if($(window).height > $(window).width)
+             {
+               imgdom.css("width",$(this).width() * 0.95 );
+             }
+             else
+             {
+               imgdom.css("height", $(this).height() * 0.95);
+             }
+           }
+        }, 
+        close:function(){$(this).remove();}
+   });
+  } 
+
+}
+});
+
+           });
+      </script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26104911-1']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['b._setAccount', 'UA-305245-3'],['b._trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+    </head>
+    <body>
+      <div id="container">
+                <div id="header" class="clearfix"><h1 class="clearfix">Rainfall Atlas of Hawaii</h1></div>
+        <div id="navigation">
+          <div id="navinner">
+          <table><tr><td>
+          <ul><li><a href="http://rainfall.geography.hawaii.edu/" title="" >Home</a></li>
+<li><a href="/interactivemap.html" title="" >Interactive Map</a></li>
+<li class="active"><a href="/downloads.html" title="" >Downloads</a></li>
+<li><a href="/howtocite.html" title="" >How To Cite</a></li>
+<li><a href="/history.html" title="" >History</a></li>
+<li><a href="/methods.html" title="" >Methods</a></li>
+<li><a href="/rainfall.html" title="" >Rainfall</a></li>
+<li><a href="/acknowledgments.html" title="" >Acknowledgments</a></li>
+<li class="last"><a href="/people.html" title="" >People</a></li>
+</ul>
+          </td></tr></table>
+          </div>
+        </div>
+        <div id="content" class="clearfix">
+          <div id="bannerext"></div>
+          <div id="maincontent">
+           <head>
+<link rel="apple-touch-icon" sizes="180x180" href="assets/files/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="assets/files/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="assets/files/favicon-16x16.png" sizes="16x16">
+</head>
+<h2>Downloads</h2>
+<p>Click on the underlined links below to download the files. All data files with a &ldquo;.zip&rdquo; or &ldquo;.rar&rdquo; at the end need to be unzipped after downloading (using WinZIP, WinRAR, 7-Zip, or a similar program).&nbsp; Please regard <a class="call_disclaimer2" href="#disclaimer2">Conditions of Use</a> for all Rainfall Atlas products and refer to our <a href="howtocite.html">How To Cite</a> page for citation information. &nbsp;</p>
+<p>All mean map products use the 30 year base period 1978-2007.</p>
+<p><u>*Added October, 2018:</u> Rainfall Trend Maps from 1920-2012 & 1983-2012. See the Rainfall Trend Maps section below.</p>
+<p><u>*Added December, 2015:</u> Interactive map links for Month-Year Rainfall Maps from 1920-2012. See the Month-Year Maps section below.</p>
+<p><u>*Added August, 2015:</u> Month-Year Rainfall Maps from 1920-2012.  See the Month-Year Maps section below.</p>
+<p><u>*Added April, 2015:</u> Raingage station data (through 2012).  See the Tabular section below.</p>
+<p>**The Moloka‘i maps have been updated! (07/2014)  Using new information from stream gauges and additional vegetation data, we have a produced improved maps of mean rainfall for the island of Moloka‘i.  All files below have been updated with these new maps.**</p>
+<div id="downloadfile">
+<h3><a href="#">Map Images</a></h3>
+<div>
+<p>Image files of the color zone rainfall maps as well as the isohyets have been created and are available for download as *.TIF files. The user has a choice of inches or millimeters, and each compressed *.zip file contains all 12 months plus the annual map. The color maps are available at a statewide extent as well as for each county, while the isohyets maps are only available for each island county (Maui Nui includes the islands of Maui, Moloka&lsquo;i, Lāna&lsquo;i and Kaho&lsquo;olawe).</p>
+<p>&nbsp;</p>
+<p><strong>Isohyets:</strong></p>
+<p><img class="imgfloatleft" src="assets/images/download2_s.jpg" alt="Isohyet Images" width="277" height="215" /></p>
+<p>These images show the mean monthly rainfall as isohyets, or lines of equal rainfall. Both sets of isohyets (inches and mm) were created at appropriate intervals for their units, and therefore are not direct conversions of each other, though they are derived from the same data. The labels are included where they can fit, which means that not all isohyets are labeled, especially in steep gradient areas. Please see the interactive map or download the GIS or Google Earth layers for more information on isohyets labels.
+</p>
+<p style="clear: left; margin-top: 1em;">&nbsp;</p>
+<p style="clear: left; margin-top: 1em;">Files for download:</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<th>Coverage</th><th>Inches</th><th>Millimeters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hawai&lsquo;i</td>
+<td><a href="assets/files/MapImages/HawaiiIsohyetTIFs_inches.zip">HawaiiIsohyetTIFs_inches.zip</a></td>
+<td><a href="assets/files/MapImages/HawaiiIsohyetTIFs_mm.zip">HawaiiIsohyetTIFs_mm.zip</a></td>
+</tr>
+<tr>
+<td>Kaua&lsquo;i</td>
+<td><a href="assets/files/MapImages/KauaiIsohyetTIFs_inches.zip">KauaiIsohyetTIFs_inches.zip</a></td>
+<td><a href="assets/files/MapImages/KauaiIsohyetTIFs_mm.zip">KauaiIsohyetTIFs_mm.zip</a></td>
+</tr>
+<tr>
+<td>Maui Nui</td>
+<td><a href="assets/files/MapImages/MauiNuiIsohyetTIFs_inches.zip">MauiNuiIsohyetTIFs_inches.zip</a></td>
+<td><a href="assets/files/MapImages/MauiNuiIsohyetTIFs_mm.zip">MauiNuiIsohyetTIFs_mm.zip</a></td>
+</tr>
+<tr>
+<td>O&lsquo;ahu</td>
+<td><a href="assets/files/MapImages/OahuIsohyetTIFs_inches.zip">OahuIsohyetTIFs_inches.zip</a></td>
+<td><a href="assets/files/MapImages/OahuIsohyetTIFs_mm.zip">OahuIsohyetTIFs_mm.zip</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><strong>Color Maps:</strong></p>
+<p><img class="imgfloatleft" src="assets/images/download1_s.jpg" alt="Color Map Images" width="277" height="215" /></p>
+<p>Unlike the interactive map which shows the rainfall as a continuous 
+color ramp, these images display the rainfall in categories. The 
+categories were set based on the natural breaks in the rainfall values 
+for each extent, with the minimum and maximum values in the legend 
+corresponding to the minimum and maximum values shown in the map extent.
+The categories were set independently for inches and millimeters, so 
+the two sets will differ slightly.</p>
+<p>&nbsp;</p>
+<p style="clear: left; margin-top: 1em;">&nbsp;</p>
+<p style="clear: left; margin-top: 1em;">Files for download:</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<th>Coverage</th><th>Inches</th><th>Millimeters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State</td>
+<td><a href="assets/files/MapImages/StateMapTIFs_inches.zip">StateMapTIFs_inches.zip</a></td>
+<td><a href="assets/files/MapImages/StateMapTIFs_mm.zip">StateMapTIFs_mm.zip</a></td>
+</tr>
+<tr>
+<td>Hawai&lsquo;i</td>
+<td><a href="assets/files/MapImages/HawaiiMapTIFs_inches.zip">HawaiiMapTIFs_inches.zip</a></td>
+<td><a href="assets/files/MapImages/HawaiiMapTIFs_mm.zip">HawaiiMapTIFs_mm.zip</a></td>
+</tr>
+<tr>
+<td>Kaua&lsquo;i</td>
+<td><a href="assets/files/MapImages/KauaiMapTIFs_inches.zip">KauaiMapTIFs_inches.zip</a></td>
+<td><a href="assets/files/MapImages/KauaiMapTIFs_mm.zip">KauaiMapTIFs_mm.zip</a></td>
+</tr>
+<tr>
+<td>Maui Nui</td>
+<td><a href="assets/files/MapImages/MauiNuiMapTIFs_inches.zip">MauiNuiMapTIFs_inches.zip</a></td>
+<td><a href="assets/files/MapImages/MauiNuiMapTIFs_mm.zip">MauiNuiMapTIFs_mm.zip</a></td>
+</tr>
+<tr>
+<td>O&lsquo;ahu</td>
+<td><a href="assets/files/MapImages/OahuMapTIFs_inches.zip">OahuMapTIFs_inches.zip</a></td>
+<td><a href="assets/files/MapImages/OahuMapTIFs_mm.zip">OahuMapTIFs_mm.zip</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3><a href="#">GIS Layers</a></h3>
+<div>
+<p>GIS layers of the rainfall isohyets, rainfall grids, raingage stations, and uncertainty have been made available for download. Users can download the isohyets and stations as shapefiles, and the rainfall and uncertainty grids have been made available in ESRI and ASCII grid formats. These are available in either inches or millimeters, and each compressed *.zip file contains all 12 months plus the annual map. Rainfall isohyets and grids are available for the entire state or users can choose to download individual islands (Maui Nui includes the islands of Maui, Moloka&lsquo;i, Lāna&lsquo;i and Kaho&lsquo;olawe). Two station shapefiles are available (the same station information used in the interactive map), and the uncertainty grids are only available at the statewide extent. All files use geographic coordinates, WGS84 datum. 
+</p>
+<p>For more information about GIS, how to use GIS layers, or to obtain more Hawai&lsquo;i layers, please refer to the Hawai&lsquo;i State GIS page, <a href="http://www.state.hi.us/dbedt/gis/download.htm" target="_blank">http://www.state.hi.us/dbedt/gis/download.htm</a>. &nbsp;After downloading, users can upload layers to ArcGIS Online to make their own maps as an alternative to using a desktop GIS program,&nbsp;<a href="http://www.arcgis.com/home/" target="_blank">http://www.arcgis.com/home/</a>.</p>
+<p>&nbsp;</p>
+<p><strong>Rainfall Grids:</strong></p>
+<p>Raster files are available at 250m resolution (0.00225 x 0.00225 cell size) for each island and for the state. These are available in inches or millimeters, and can be downloaded in ESRI grid format or ASCII grid format. These are the main output of this project, with the isohyets and other products being produced from these grids.</p>
+<ul>
+<li><a href="assets/files/PDF/Metadata_RFGrids.pdf" target="_blank">Rainfall Grid Metadata<br /><br /></a></li>
+</ul>
+<p>ESRI Grid Format:</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<th>Coverage</th><th>Inches</th><th>Millimeters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State</td>
+<td><a href="assets/files/GISLayers/StateRFGrids_inches.zip">StateRFGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/StateRFGrids_mm.zip">StateRFGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>Hawai&lsquo;i</td>
+<td><a href="assets/files/GISLayers/HawaiiRFGrids_inches.zip">HawaiiRFGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/HawaiiRFGrids_mm.zip">HawaiiRFGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>Kaua&lsquo;i</td>
+<td><a href="assets/files/GISLayers/KauaiRFGrids_inches.zip">KauaiRFGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/KauaiRFGrids_mm.zip">KauaiRFGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>Maui Nui</td>
+<td><a href="assets/files/GISLayers/MauiNuiRFGrids_inches.zip">MauiNuiRFGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/MauiNuiRFGrids_mm.zip">MauiNuiRFGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>O&lsquo;ahu</td>
+<td><a href="assets/files/GISLayers/OahuRFGrids_inches.zip">OahuRFGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/OahuRFGrids_mm.zip">OahuRFGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>Maui</td>
+<td><a href="assets/files/GISLayers/MauiRFGrids_inches.zip">MauiRFGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/MauiRFGrids_mm.zip">MauiRFGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>Lāna&lsquo;i</td>
+<td><a href="assets/files/GISLayers/LanaiRFGrids_inches.zip">LanaiRFGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/LanaiRFGrids_mm.zip">LanaiRFGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>Moloka&lsquo;i</td>
+<td><a href="assets/files/GISLayers/MolokaiRFGrids_inches.zip">MolokaiRFGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/MolokaiRFGrids_mm.zip">MolokaiRFGrids_mm.zip</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>ASCII Grid Format:</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<th>Coverage</th><th>Inches</th><th>Millimeters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State</td>
+<td><a href="assets/files/GISLayers/StateASCIIGrids_inches.zip">StateASCIIGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/StateASCIIGrids_mm.zip">StateASCIIGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>Hawai&lsquo;i</td>
+<td><a href="assets/files/GISLayers/HawaiiASCIIGrids_inches.zip">HawaiiASCIIGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/HawaiiASCIIGrids_mm.zip">HawaiiASCIIGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>Kaua&lsquo;i</td>
+<td><a href="assets/files/GISLayers/KauaiASCIIGrids_inches.zip">KauaiASCIIGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/KauaiASCIIGrids_mm.zip">KauaiASCIIGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>Maui Nui</td>
+<td><a href="assets/files/GISLayers/MauiNuiASCIIGrids_inches.zip">MauiNuiASCIIGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/MauiNuiASCIIGrids_mm.zip">MauiNuiASCIIGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>O&lsquo;ahu</td>
+<td><a href="assets/files/GISLayers/OahuASCIIGrids_inches.zip">OahuASCIIGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/OahuASCIIGrids_mm.zip">OahuASCIIGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>Maui</td>
+<td><a href="assets/files/GISLayers/MauiASCIIGrids_inches.zip">MauiASCIIGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/MauiASCIIGrids_mm.zip">MauiASCIIGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>Lāna&lsquo;i</td>
+<td><a href="assets/files/GISLayers/LanaiASCIIGrids_inches.zip">LanaiASCIIGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/LanaiASCIIGrids_mm.zip">LanaiASCIIGrids_mm.zip</a></td>
+</tr>
+<tr>
+<td>Moloka&lsquo;i</td>
+<td><a href="assets/files/GISLayers/MolokaiASCIIGrids_inches.zip">MolokaiASCIIGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/MolokaiASCIIGrids_mm.zip">MolokaiASCIIGrids_mm.zip</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><strong>Rainfall Isohyets:</strong></p>
+<p>Rainfall isohyet files are available as polyline shapefiles for each island and for the state. These are available in inches or millimeters, and the "Contour" column in the attribute table contains the isohyet labels. Both sets of isohyets (inches and mm) were created at appropriate 
+intervals for their units, and therefore are not direct conversions of 
+each other, though they are derived from the same data.</p>
+<ul>
+<li><a href="assets/files/PDF/Metadata_RFIsohyets.pdf">Isohyet Metadata</a></li>
+</ul>
+<p>&nbsp;</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<th>Coverage</th><th>Inches</th><th>Millimeters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State</td>
+<td><a href="assets/files/GISLayers/StateIsohyetsSHP_inches.zip">StateIsohyetsSHP_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/StateIsohyetsSHP_mm.zip">StateIsohyetsSHP_mm.zip</a></td>
+</tr>
+<tr>
+<td>Hawai&lsquo;i</td>
+<td><a href="assets/files/GISLayers/HawaiiIsohyetsSHP_inches.zip">HawaiiIsohyetsSHP_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/HawaiiIsohyetsSHP_mm.zip">HawaiiIsohyetsSHP_mm.zip</a></td>
+</tr>
+<tr>
+<td>Kaua&lsquo;i</td>
+<td><a href="assets/files/GISLayers/KauaiIsohyetsSHP_inches.zip">KauaiIsohyetsSHP_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/KauaiIsohyetsSHP_mm.zip">KauaiIsohyetsSHP_mm.zip</a></td>
+</tr>
+<tr>
+<td>Maui Nui</td>
+<td><a href="assets/files/GISLayers/MauiNuiIsohyetsSHP_inches.zip">MauiNuiIsohyetsSHP_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/MauiNuiIsohyetsSHP_mm.zip">MauiNuiIsohyetsSHP_mm.zip</a></td>
+</tr>
+<tr>
+<td>O&lsquo;ahu</td>
+<td><a href="assets/files/GISLayers/OahuIsohyetsSHP_inches.zip">OahuIsohyetsSHP_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/OahuIsohyetsSHP_mm.zip">OahuIsohyetsSHP_mm.zip</a></td>
+</tr>
+<tr>
+<td>Maui</td>
+<td><a href="assets/files/GISLayers/MauiIsohyetsSHP_inches.zip">MauiIsohyetsSHP_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/MauiIsohyetsSHP_mm.zip">MauiIsohyetsSHP_mm.zip</a></td>
+</tr>
+<tr>
+<td>Lāna&lsquo;i</td>
+<td><a href="assets/files/GISLayers/LanaiIsohyetsSHP_inches.zip">LanaiIsohyetsSHP_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/LanaiIsohyetsSHP_mm.zip">LanaiIsohyetsSHP_mm.zip</a></td>
+</tr>
+<tr>
+<td>Moloka&lsquo;i</td>
+<td><a href="assets/files/GISLayers/MolokaiIsohyetsSHP_inches.zip">MolokaiIsohyetsSHP_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/MolokaiIsohyetsSHP_mm.zip">MolokaiIsohyetsSHP_mm.zip</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><strong>Raingage Stations:</strong></p>
+<p>Two point shapefiles containing station information are available for download. "RFAtlasStations" refers to the stations used to create the final rainfall atlas maps. "OtherStations" refers to all other stations that have operated in Hawai&lsquo;i, but for various reasons could not be included in the final analysis. The data available in the attribute table can also be downloaded as a *.csv or Microsoft Excel *.xslx file (see Tabular Downloads).&nbsp;</p>
+<p>&nbsp;</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<th>Coverage</th><th>Shapefile</th><th>Metadata</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State</td>
+<td><a href="assets/files/GISLayers/RFAtlasStationsSHP.zip">RFAtlasStationsSHP.zip</a></td>
+<td><a href="assets/files/PDF/Metadata_RFAtlasStns.pdf" target="_blank">RFAtlasStations_Metadata</a></td>
+</tr>
+<tr>
+<td>State</td>
+<td><a href="assets/files/GISLayers/OtherStationsSHP.zip">OtherStationsSHP.zip</a></td>
+<td><a href="assets/files/PDF/Metadata_OtherStns.pdf" target="_blank">OtherStations_Metadata</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><strong>Uncertainty:</strong></p>
+<p>The uncertainty grids are available at 250m resolution (0.00225 x 0.00225 cell size) for the state. These are available in inches or millimeters, and can be downloaded in ESRI grid format or ASCII grid format. These layers contain the combined standard error from all input sources to the final maps - see <a href="methods.html">Methods</a> for more information.</p>
+<ul>
+<li><a href="assets/files/PDF/Metadata_UncerGrids.pdf" target="_blank">Uncertainty Grid Metadata</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>ESRI Grid Format:</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<th>Coverage</th><th>Inches</th><th>Millimeters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State</td>
+<td><a href="assets/files/GISLayers/UncertaintyGrids_inches.zip">UncertaintyGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/UncertaintyGrids_mm.zip">UncertaintyGrids_mm.zip</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>ASCII Grid Format:</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<th>Coverage</th><th>Inches</th><th>Millimeters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State</td>
+<td><a href="assets/files/GISLayers/UncertaintyASCIIGrids_inches.zip">UncertaintyASCIIGrids_inches.zip</a></td>
+<td><a href="assets/files/GISLayers/UncertaintyASCIIGrids_mm.zip">UncertaintyASCIIGrids_mm.zip</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3><a href="#">Google Earth Files</a></h3>
+<div>
+<p>The same files seen in the interactive map have also been converted into *.KML (*.KMZ) files which can be viewed in Google Earth. The stations and isohyets (lines of equal rainfall) will display their attribute information when an element is clicked on in Google Earth. The color rainfall maps do not contain the value information as they do on the interactive site, so the best way to view these in Google Earth is to set the transparency to overlay it onto the imagery. Maui Nui includes the islands of Maui, Moloka&lsquo;i, Lāna&lsquo;i and Kaho&lsquo;olawe.</p>
+<p>&nbsp;</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="assets/images/download4_s.jpg" alt="Google Earth" width="650" height="335" /></p>
+<p>&nbsp;</p>
+<p><img class="imgfloatright" style="display: block; margin-left: auto; margin-right: auto;" src="assets/images/download5_s.jpg" alt="Station Legend" width="102" height="147" /></p>
+<p>&nbsp;</p>
+<p><br />The StationsKML.zip file contains two station files: "RFAtlas Stations" refers to the stations used to create the final rainfall atlas maps. "Other Stations" refers to all the other stations that have operated in Hawai&lsquo;i, but for various reasons could not be included in the final analysis. Click on a station for more information. The symbols are set automatically for these stations to be the same as on the interactive map:</p>
+<p>&nbsp;</p>
+<ul>
+<li><a href="assets/files/KMLFiles/StationKMLs.zip">StationsKMLs.zip</a></li>
+</ul>
+<p>&nbsp;</p>
+<p style="clear: right; margin-top: 1em;">The isohyet KMLs are available in inches or millimeters, with "Contour" referring to the isohyet label when you click on a line (labels will not be displayed unless you click on a line). Both sets of isohyets (inches and mm) were created at appropriate 
+intervals for their units, and therefore are not direct conversions of 
+each other, though they are derived from the same data.</p>
+<p>&nbsp;</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<th>Coverage</th><th>Inches</th><th>Millimeters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State</td>
+<td><a href="assets/files/KMLFiles/IsohyetsKML_inches.zip">IsohyetsKML_inches.zip</a></td>
+<td><a href="assets/files/KMLFiles/IsohyetsKML_mm.zip">IsohyetsKML_mm.zip</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Color Map KMLs are available by island: (use transparency in Google Earth for best viewing, as no legend is available at this time for these layers):</p>
+<p>&nbsp;</p>
+<ul>
+<li><a href="assets/files/KMLFiles/HawaiiRainfall_KML.zip">HawaiiRainfall_KML.zip</a></li>
+<li><a href="assets/files/KMLFiles/OahuRainfall_KML.zip">OahuRainfall_KML.zip</a></li>
+<li><a href="assets/files/KMLFiles/MauiNuiRainfall_KML.zip">MauiNuiRainfall_KML.zip</a></li>
+<li><a href="assets/files/KMLFiles/KauaiRainfall_KML.zip">KauaiRainfall_KML.zip</a></li>
+</ul>
+</div>
+<h3><a href="#">Tabular</a></h3>
+<div>
+<p><b>All station data available for download on our website are <u>monthly</u> totals.</b></p>
+<p>For daily station data, <a href="https://www.nature.com/articles/sdata201812" target="_blank">Longman et al. 2018</a> have compiled and quality controlled the data from 1990-2014 - available for <a href="https://figshare.com/collections/Compilation_of_climate_data_from_heterogeneous_networks_across_the_Hawaiian_Islands/3858208" target="_blank">download here</a>.</p>
+<br>
+<p><b>Added April, 2015: Raingage station data (through 2012):</b></p>
+<p>There are two formats available: </p>
+<p>Processed Original Data: data that have been screened for outliers and inhomogeneities, includes data values from all years available at the time of data collection (1837-2013)</p>
+<p>Filled Data 1920-2012: data from 1920-2012 with missing values filled whenever possible (see methods)</p>
+<p>A "Read_Me" tab has been included with each of these files to further explain the contents.</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Excel 2007 Format</strong><br /></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="assets/files/Tabular/ProcessedOriginalData2012.xlsx">Processed Original Monthly Data 2012</a></td>
+</tr>
+<tr>
+<td><a href="assets/files/Tabular/FilledDataset2012.xlsx">Filled Monthly Dataset, 1920-2012</a><br /></td>
+</tr>
+</tbody>
+</table>
+<p>Note: We have not compiled rain gauge data beyond 2013 (what is available in the "2012" database above). If you need more current data, please contact the individual agencies that maintain the gages.</p>
+<p>NCDC: <a href="http://www.ncdc.noaa.gov/cdo-web/" target="_blank">http://www.ncdc.noaa.gov/cdo-web/</a></p>
+<p>USGS: <a href="http://wdr.water.usgs.gov/allsearch.php" target="_blank">http://wdr.water.usgs.gov/allsearch.php</a> (climatological sites)</p>
+<p>RAWS: <a href="http://www.raws.dri.edu/wraws/hiF.html" target="_blank">http://www.raws.dri.edu/wraws/hiF.html</a></p>
+<p>SCAN: <a href="http://www.wcc.nrcs.usda.gov/scan/index.html" target="_blank">http://www.wcc.nrcs.usda.gov/scan/index.html</a></p>
+<p>WRCC (should be the same stations from NCDC): <a href="http://www.wrcc.dri.edu/summary/Climsmhi.html" target="_blank">http://www.wrcc.dri.edu/summary/Climsmhi.html</a></p>
+<p>Hydronet: <a href="http://www.prh.noaa.gov/hnl/hydro/hydronet/hydronet-data.php" target="_blank">http://www.prh.noaa.gov/hnl/hydro/hydronet/hydronet-data.php</a></p>
+<p>HaleNet: <a href=https://sites.google.com/a/hawaii.edu/ecohydrology_lab/current-research/halenet" target="_blank">https://sites.google.com/a/hawaii.edu/ecohydrology_lab/current-research/halenet</a>. </p>
+<p>Hawai‘i State Climatologist - paper records of rain gauge data are stored in the State Climatologist's office: <a href="http://www.soest.hawaii.edu/MET/Hsco/" target="_blank">http://www.soest.hawaii.edu/MET/Hsco/</a></p>
+<p>&nbsp;</p>
+<p><b>Original Rainfall Atlas Products (data end in 2007):</b></p>
+<p>Raingage station data are available in *.csv (comma separated values) format as well as Microsoft Excel *.xlsx format.&nbsp; The mean monthly data are available only for the stations used in the Rainfall Atlas (RFAtlas Stations).&nbsp; The station information for all other stations is available as well (referred to as "Other Stations").&nbsp; The monthly data are available in three different formats: Processed original data (data that have been screened for outliers and inhomogeneities), Filled Dataset (processed original data plus filled data from 1920-2007, used to create the Rainfall Atlas means), and Raw Original Monthly Data (the original data before removing inhomogeneities and other suspicious records).&nbsp; All data files contain mm and inches.</p>
+<p>An "About" tab has been included with each of these files to further explain the contents.&nbsp; For details about the processing or gap filling, please read the final report, available for download below the tabular files.</p>
+<p>&nbsp;</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Excel 2007 Format</strong><br /></td>
+<td style="text-align: center;"><strong>CSV Format</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="assets/files/Tabular/FinalStationData_Used.xlsx">Mean Rainfall Data - RFAtlas Stations</a></td>
+<td><a href="assets/files/Tabular/FinalStationData_Used_csv.csv">Mean Rainfall Data - RFAtlas Stations</a></td>
+</tr>
+<tr>
+<td><a href="assets/files/Tabular/FinalStations_NotUsed.xlsx">Station Information - Other Stations</a></td>
+<td><a href="assets/files/Tabular/FinalStations_NotUsed_csv.csv">Station Information - Other Stations</a></td>
+</tr>
+<tr>
+<td><a href="assets/files/Tabular/ProcessedOriginalData.xlsx">Processed Original Monthly Data</a></td>
+<td><a href="assets/files/Tabular/ProcessedOriginalData_csv.zip">Processed Original Monthly Data</a></td>
+</tr>
+<tr>
+<td><a href="assets/files/Tabular/FilledDataset.xlsx">Filled Monthly Dataset, 1920-2007</a><br /></td>
+<td><a href="assets/files/Tabular/FilledDataset_csv.zip">Filled Monthly Dataset, 1920-2007</a><br /></td>
+</tr>
+<tr>
+<td><a href="assets/files/Tabular/RawOriginalData.xlsx">Raw Original Monthly Data</a></td>
+<td><a href="assets/files/Tabular/RawOriginalData_csv.zip">Raw Original Monthly Data</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3><a href="#">Report</a></h3>
+<div>
+<p><a href="assets/files/PDF/RF Atlas Final Report.pdf" target="_blank">Rainfall Atlas of Hawai&lsquo;i 2011 - Final Report</a></p>
+<p>&nbsp;</p>
+</div>
+<h3><a href="#">Month-Year Maps 1920-2012</a></h3>
+<div>
+<p>*NEW* as of August 7, 2015</p>
+<p>Month-year rainfall maps for the State of Hawai‘i were created from January 1920 to December 2012 as a spin-off project from the original Rainfall Atlas of Hawai‘i.  These maps can be downloaded below in ESRI grid format at 250 m resolution. The rainfall maps are available in either inches or millimeters, and each compressed *.rar file contains monthly and annual maps for every year (1920-2012). In addition to rainfall maps, we have also generated anomaly maps for each month-year, relative to the 1978-2007 (Rainfall Atlas) mean. The anomalies are calculated by dividing the monthly rainfall map by the monthly mean map (January 1920 Anomaly = January 1920 Rainfall / January Mean Rainfall). Units for anomaly maps are dimensionless. For complete methods, see citation below.</p>
+<p>Please use the following citation for these maps:</p>
+<p> </p>
+<p style="padding: 0 2em 0;"><b>Frazier, A. G., Giambelluca, T. W., Diaz, H. F. and Needham, H. L. (2016), Comparison of geostatistical approaches to spatially interpolate month-year rainfall for the Hawaiian Islands. <i>Int. J. Climatol.</i>, 36(3), 1459-1470. doi: 10.1002/joc.4437</b></p>
+<p>The link to the full article is <a href="http://onlinelibrary.wiley.com/doi/10.1002/joc.4437/abstract"target="_blank">here</a>.</p>
+<p>ESRI Grid Format:</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<th>Coverage (File Size)</th><th>Inches</th><th>Millimeters</th><th>Anomaly</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State (1.1 GB)</td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_State_in_1920_2012.rar">State_RFGrids_1920_2012_in</a></td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_State_mm_1920_2012.rar">State_RFGrids_1920_2012_mm</a></td>
+<td><a href="assets/files/MonthYrMaps/AnomMonthYr_Rasters_State_1920_2012.rar">State_AnomGrids_1920_2012</a></td>
+</tr>
+<tr>
+<td>Hawai&lsquo;i (650 MB)</td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_Bi_in_1920_2012.rar">Hawaii_RFGrids_1920_2012_in</a></td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_Bi_mm_1920_2012.rar">Hawaii_RFGrids_1920_2012_mm</a></td>
+<td><a href="assets/files/MonthYrMaps/AnomMonthYr_Rasters_Bi_1920_2012.rar">Hawaii_AnomGrids_1920_2012</a></td>
+</tr>
+<tr>
+<td>Kaua&lsquo;i (110 MB)</td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_Ka_in_1920_2012.rar">Kauai_RFGrids_1920_2012_in</a></td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_Ka_mm_1920_2012.rar">Kauai_RFGrids_1920_2012_mm</a></td>
+<td><a href="assets/files/MonthYrMaps/AnomMonthYr_Rasters_Ka_1920_2012.rar">Kauai_AnomGrids_1920_2012</a></td>
+</tr>
+<tr>
+<td>O&lsquo;ahu (120 MB)</td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_Oa_in_1920_2012.rar">Oahu_RFGrids_1920_2012_in</a></td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_Oa_mm_1920_2012.rar">Oahu_RFGrids_1920_2012_mm</a></td>
+<td><a href="assets/files/MonthYrMaps/AnomMonthYr_Rasters_Oa_1920_2012.rar">Oahu_AnomGrids_1920_2012</a></td>
+</tr>
+<tr>
+<td>Maui (155 MB)</td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_Ma_in_1920_2012.rar">Maui_RFGrids_1920_2012_in</a></td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_Ma_mm_1920_2012.rar">Maui_RFGrids_1920_2012_mm</a></td>
+<td><a href="assets/files/MonthYrMaps/AnomMonthYr_Rasters_Ma_1920_2012.rar">Maui_AnomGrids_1920_2012</a></td>
+</tr>
+<tr>
+<td>Lāna&lsquo;i (28 MB)</td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_La_in_1920_2012.rar">Lanai_RFGrids_1920_2012_in</a></td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_La_mm_1920_2012.rar">Lanai_RFGrids_1920_2012_mm</a></td>
+<td><a href="assets/files/MonthYrMaps/AnomMonthYr_Rasters_La_1920_2012.rar">Lanai_AnomGrids_1920_2012</a></td>
+</tr>
+<tr>
+<td>Moloka&lsquo;i (50 MB)</td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_Mo_in_1920_2012.rar">Molokai_RFGrids_1920_2012_in</a></td>
+<td><a href="assets/files/MonthYrMaps/RFMonthYr_Rasters_Mo_mm_1920_2012.rar">Molokai_RFGrids_1920_2012_mm</a></td>
+<td><a href="assets/files/MonthYrMaps/AnomMonthYr_Rasters_Mo_1920_2012.rar">Molokai_AnomGrids_1920_2012</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>*NEW* as of December 11, 2015</p>
+<p>Interactive Map Links (hosted by the PICCC Conservation Planning Atlas):</p>
+<p><a href="http://piccc.databasin.org/maps/e558f9d79f4e42018f5ab25b798d5ad6" target="_blank">Annual Maps 1920-2012</a><br>
+<a href="http://piccc.databasin.org/maps/52263afac70e484b94c43e29eb260bb8" target="_blank">Month-Year Maps 1920-1929</a><br>
+<a href="http://piccc.databasin.org/maps/ef4656c48e1b4acdbf9f5206d54390ed" target="_blank">Month-Year Maps 1930-1939</a><br>
+<a href="http://piccc.databasin.org/maps/3931997423674c75a89c485c546e83b8" target="_blank">Month-Year Maps 1940-1949</a><br>
+<a href="http://piccc.databasin.org/maps/1aab93ee0dd24d3781321b337947b676" target="_blank">Month-Year Maps 1950-1959</a><br>
+<a href="http://piccc.databasin.org/maps/7e3afa62bc7f4f618ed5d386a94881d9" target="_blank">Month-Year Maps 1960-1969</a><br>
+<a href="http://piccc.databasin.org/maps/a645148d003b4eb5922ab2308945dc0b" target="_blank">Month-Year Maps 1970-1979</a><br>
+<a href="http://piccc.databasin.org/maps/27e11cdeb8394cfa9b7e5f43196fc5cb" target="_blank">Month-Year Maps 1980-1989</a><br>
+<a href="http://piccc.databasin.org/maps/684a26c2cf7c415fb2d3f6c32ddf84c3" target="_blank">Month-Year Maps 1990-1999</a><br>
+<a href="http://piccc.databasin.org/maps/045168561e1f4f59a8c0b1c72c98f639" target="_blank">Month-Year Maps 2000-2012</a></p>
+<p>&nbsp;</p>
+<p>From the month-year maps we have generated Statewide and Island average <b>monthly time series</b>.  Each index is the average of all map pixels for that month-year. These are available for download in Microsoft Excel (*.xlsx) and CSV (*.csv) formats. Each file contains the average rainfall values in millimeters and inches. </p>
+<p>Average time series derived from month-year maps:</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<td style="text-align: center;"><strong>Excel 2007 Format</strong><br /></td>
+<td style="text-align: center;"><strong>CSV Format</strong></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="assets/files/MonthYrMaps/State_MonthlyRainfallIndex_1920_2012.xlsx">State - Monthly Rainfall Index</a></td>
+<td><a href="assets/files/MonthYrMaps/State_MonthlyRFIndex_1920_2012_CSV.zip">State - Monthly Rainfall Index</a></td>
+</tr>
+<tr>
+<td><a href="assets/files/MonthYrMaps/Bi_MonthlyRainfallIndex_1920_2012.xlsx">Hawaii Island - Monthly Rainfall Index</a></td>
+<td><a href="assets/files/MonthYrMaps/Bi_MonthlyRFIndex_1920_2012_CSV.zip">Hawaii Island - Monthly Rainfall Index</a></td>
+</tr>
+<tr>
+<td><a href="assets/files/MonthYrMaps/Ka_MonthlyRainfallIndex_1920_2012.xlsx">Kauai - Monthly Rainfall Index</a></td>
+<td><a href="assets/files/MonthYrMaps/Ka_MonthlyRFIndex_1920_2012_CSV.zip">Kauai - Monthly Rainfall Index</a></td>
+</tr>
+<tr>
+<td><a href="assets/files/MonthYrMaps/Oa_MonthlyRainfallIndex_1920_2012.xlsx">Oahu - Monthly Rainfall Index</a></td>
+<td><a href="assets/files/MonthYrMaps/Oa_MonthlyRFIndex_1920_2012_CSV.zip">Oahu - Monthly Rainfall Index</a></td>
+</tr>
+<tr>
+<td><a href="assets/files/MonthYrMaps/Ma_MonthlyRainfallIndex_1920_2012.xlsx">Maui - Monthly Rainfall Index</a></td>
+<td><a href="assets/files/MonthYrMaps/Ma_MonthlyRFIndex_1920_2012_CSV.zip">Maui - Monthly Rainfall Index</a></td>
+</tr>
+<tr>
+<td><a href="assets/files/MonthYrMaps/La_MonthlyRainfallIndex_1920_2012.xlsx">Lanai - Monthly Rainfall Index</a></td>
+<td><a href="assets/files/MonthYrMaps/La_MonthlyRFIndex_1920_2012_CSV.zip">Lanai - Monthly Rainfall Index</a></td>
+</tr>
+<tr>
+<td><a href="assets/files/MonthYrMaps/Mo_MonthlyRainfallIndex_1920_2012.xlsx">Molokai - Monthly Rainfall Index</a></td>
+<td><a href="assets/files/MonthYrMaps/Mo_MonthlyRFIndex_1920_2012_CSV.zip">Molokai - Monthly Rainfall Index</a></td>
+</tr>
+</tbody>
+</table>
+<p>Again, please use the following citation for these rainfall indices:</p>
+<p> </p>
+<p style="padding: 0 2em 0;">Frazier, A. G., Giambelluca, T. W., Diaz, H. F. and Needham, H. L. (2016), Comparison of geostatistical approaches to spatially interpolate month-year rainfall for the Hawaiian Islands. <i>Int. J. Climatol.</i>, 36(3), 1459-1470. doi: 10.1002/joc.4437</p>
+</div>
+<h3><a href="#">Rainfall Trend Maps 1920-2012</a></h3>
+<div>
+<p>*NEW* as of October 10, 2018</p>
+<p>Month-year rainfall maps for the State of Hawai‘i (see data tab above) were used to calculate rainfall trends from 1920 to 2012, and for the most recent 30-year period available, 1983-2012. Wet season (November-April), Dry season (May-October), and Annual trends were calculated at each 250 m pixel across the state and mapped to produce spatially continuous trend maps. Statistically significant trends (p<0.05) are indicated with black hatching. Units are percent per decade (relative to the Rainfall Atlas 1978-2007 means). Trend maps can be downloaded as JPEG images below for each island. For complete methods, see citation below.</p>
+<p>Please use the following citation for these rainfall trend maps:</p>
+<p> </p>
+<p style="padding: 0 2em 0;"><strong>Frazier, A. G., and Giambelluca, T. W. (2017), Spatial trend analysis of Hawaiian rainfall from 1920 to 2012. <i>Int. J. Climatol.</i>, 37(5), 2522-2531. doi: 10.1002/joc.4862</strong></p>
+<p>The link to the full article is <a href="http://onlinelibrary.wiley.com/doi/10.1002/joc.4862/abstract"target="_blank">here</a>.</p>
+<p>&nbsp;</p>
+<p><strong>JPEG Images Statewide:</strong></p>
+<p><img class="imgfloatleft" src="assets/files/TrendMapImages/State_RFTrends_1920_2012_Ann1.jpg" alt="Annual State Trends 1920-2012" width="277" height="215" /></p>
+<p><img class="imgfloatleft" src="assets/files/TrendMapImages/State_RFTrends_1983_2012_Ann1.jpg" alt="Annual State Trends 1983-2012" width="277" height="215" /></p>
+<p style="clear: left; margin-top: 1em;">&nbsp;</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<th>Spatial Coverage & Season</th><th>1920-2012 Trends</th><th>1983-2012 Trends</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State: Annual Trends</td>
+<td><a href="assets/files/TrendMapImages/State_RFTrends_1920_2012_Ann1.jpg" target="_blank">State Annual Trends, 1920-2012</a></td>
+<td><a href="assets/files/TrendMapImages/State_RFTrends_1983_2012_Ann1.jpg" target="_blank">State Annual Trends, 1983-2012</a></td>
+</tr>
+<tr>
+<td>State: Wet Season Trends</td>
+<td><a href="assets/files/TrendMapImages/State_RFTrends_1920_2012_NovApr1.jpg" target="_blank">State Wet Season Trends, 1920-2012</a></td>
+<td><a href="assets/files/TrendMapImages/State_RFTrends_1983_2012_NovApr1.jpg" target="_blank">State Wet Season Trends, 1983-2012</a></td>
+</tr>
+<tr>
+<td>State: Dry Season Trends</td>
+<td><a href="assets/files/TrendMapImages/State_RFTrends_1920_2012_MayOct1.jpg" target="_blank">State Dry Season Trends, 1920-2012</a></td>
+<td><a href="assets/files/TrendMapImages/State_RFTrends_1983_2012_MayOct1.jpg" target="_blank">State Dry Season Trends, 1983-2012</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><strong>JPEG Images Statewide (panels):</strong></p>
+<p><img class="imgfloatleft" src="assets/files/TrendMapImages/State_RFTrends_1920_2012_Ann2.jpg" alt="Annual State (panel) Trends 1920-2012" width="315" height="215" /></p>
+<p><img class="imgfloatleft" src="assets/files/TrendMapImages/State_RFTrends_1983_2012_Ann2.jpg" alt="Annual State (panel) Trends 1983-2012" width="315" height="215" /></p>
+<p style="clear: left; margin-top: 1em;">&nbsp;</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<th>Spatial Coverage & Season</th><th>1920-2012 Trends</th><th>1983-2012 Trends</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State (panels): Annual Trends</td>
+<td><a href="assets/files/TrendMapImages/State_RFTrends_1920_2012_Ann2.jpg" target="_blank">State Annual Trends, 1920-2012</a></td>
+<td><a href="assets/files/TrendMapImages/State_RFTrends_1983_2012_Ann2.jpg" target="_blank">State Annual Trends, 1983-2012</a></td>
+</tr>
+<tr>
+<td>State (panels): Wet Season Trends</td>
+<td><a href="assets/files/TrendMapImages/State_RFTrends_1920_2012_NovApr2.jpg" target="_blank">State Wet Season Trends, 1920-2012</a></td>
+<td><a href="assets/files/TrendMapImages/State_RFTrends_1983_2012_NovApr2.jpg" target="_blank">State Wet Season Trends, 1983-2012</a></td>
+</tr>
+<tr>
+<td>State (panels): Dry Season Trends</td>
+<td><a href="assets/files/TrendMapImages/State_RFTrends_1920_2012_MayOct2.jpg" target="_blank">State Dry Season Trends, 1920-2012</a></td>
+<td><a href="assets/files/TrendMapImages/State_RFTrends_1983_2012_MayOct2.jpg" target="_blank">State Dry Season Trends, 1983-2012</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p><strong>JPEG Images by Island (Annual, Wet Season, Dry Season):</strong></p>
+<p><img class="imgfloatleft" src="assets/files/TrendMapImages/Ma_RFTrends_1920_2012_3seas.jpg" alt="Maui Trends 1920-2012" width="396" height="180" /></p>
+<p><img class="imgfloatleft" src="assets/files/TrendMapImages/Ma_RFTrends_1983_2012_3seas.jpg" alt="Maui Trends 1983-2012" width="396" height="180" /></p>
+<p style="clear: left; margin-top: 1em;">&nbsp;</p>
+<table class="downloadtable" border="0">
+<thead>
+<tr>
+<th>Spatial Coverage</th><th>1920-2012 Trends</th><th>1983-2012 Trends</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hawai&lsquo;i Island</td>
+<td><a href="assets/files/TrendMapImages/Ha_RFTrends_1920_2012_3seas.jpg" target="_blank">Hawai‘i Island Seasonal Rainfall Trends, 1920-2012</a></td>
+<td><a href="assets/files/TrendMapImages/Ha_RFTrends_1983_2012_3seas.jpg" target="_blank">Hawai‘i Island Seasonal Rainfall Trends, 1983-2012</a></td>
+</tr>
+<tr>
+<td>Kaua&lsquo;i</td>
+<td><a href="assets/files/TrendMapImages/Ka_RFTrends_1920_2012_3seas.jpg" target="_blank">Kaua‘i Seasonal Rainfall Trends, 1920-2012</a></td>
+<td><a href="assets/files/TrendMapImages/Ka_RFTrends_1983_2012_3seas.jpg" target="_blank">Kaua‘i Island Seasonal Rainfall Trends, 1983-2012</a></td>
+</tr>
+<tr>
+<td>O&lsquo;ahu</td>
+<td><a href="assets/files/TrendMapImages/Oa_RFTrends_1920_2012_3seas.jpg" target="_blank">O‘ahu Seasonal Rainfall Trends, 1920-2012</a></td>
+<td><a href="assets/files/TrendMapImages/Oa_RFTrends_1983_2012_3seas.jpg" target="_blank">O‘ahu Island Seasonal Rainfall Trends, 1983-2012</a></td>
+</tr>
+<tr>
+<td>Maui</td>
+<td><a href="assets/files/TrendMapImages/Ma_RFTrends_1920_2012_3seas.jpg" target="_blank">Maui Seasonal Rainfall Trends, 1920-2012</a></td>
+<td><a href="assets/files/TrendMapImages/Ma_RFTrends_1983_2012_3seas.jpg" target="_blank">Maui Island Seasonal Rainfall Trends, 1983-2012</a></td>
+</tr>
+<tr>
+<td>Lāna&lsquo;i & Moloka&lsquo;i</td>
+<td><a href="assets/files/TrendMapImages/MoLa_RFTrends_1920_2012_3seas.jpg" target="_blank">Moloka‘i and Lāna‘i Seasonal Rainfall Trends, 1920-2012</a></td>
+<td><a href="assets/files/TrendMapImages/MoLa_RFTrends_1983_2012_3seas.jpg" target="_blank">Moloka‘i and Lāna‘i Seasonal Rainfall Trends, 1983-2012</a></td>
+</tr>
+<tr>
+<td>Maui Nui (Maui, Moloka‘i, Lāna‘i, and Kaho‘olawe)</td>
+<td><a href="assets/files/TrendMapImages/MaNui_RFTrends_1920_2012_3seas.jpg" target="_blank">Maui Nui Seasonal Rainfall Trends, 1920-2012</a></td>
+<td><a href="assets/files/TrendMapImages/MaNui_RFTrends_1983_2012_3seas.jpg" target="_blank">Maui Nui Island Seasonal Rainfall Trends, 1983-2012</a></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Mean 1920–2012 trends for each island and season in percent per decade based on the 1978–2007 mean, and mm per decade:</p>
+<p><img class="imgfloatleft" src="assets/files/TrendMapImages/FrazierGiambelluca2017_Table2.jpg" alt="Mean 1920–2012 trends for each island and season" width="904" height="350" /></p>
+<p style="clear: left; margin-top: 1em;">&nbsp;</p>
+<p>Again, please use the following citation for these rainfall trend maps:</p>
+<p> </p>
+<p style="padding: 0 2em 0;">Frazier, A. G., and Giambelluca, T. W. (2017), Spatial trend analysis of Hawaiian rainfall from 1920 to 2012. <i>Int. J. Climatol.</i>, 37(5), 2522-2531. doi: 10.1002/joc.4862</p>
+</div>
+</div>
+<p>
+<div id="disclaimer" class="disclaimer" title="Please Read">
+<h2>Conditions of Use</h2>
+<p>All maps, data, graphs, and narrative material available on this web site are subject to the following conditions.</p>
+<p><strong>Images.</strong> All color and isohyet rainfall map images presented here are available for reproduction and distribution. The map source must be included in any reproduction. </p>
+<p><strong>Gridded Map and Tabular Data.</strong> All gridded and tabular data and all other data presented here are available for reproduction and distribution for non-commercial use. The data source must be prominently stated whenever presenting these data in any form or any product derived in whole or part from these data.</p>
+<p><strong>Crediting the Source.</strong> Any reproduction or use of the images, maps, graphs, data, other information, or any product derived in whole or part from these data must credit the source in the following manner:</p>
+<p>
+<p style="padding: 0 2em 0;">Giambelluca, T.W., Q. Chen, A.G. Frazier, J.P. Price, Y.-L. Chen, P.-S. Chu, J.K. Eischeid, and D.M. Delparte, 2013: Online Rainfall Atlas of Hawai‘i.  <i>Bull. Amer. Meteor. Soc.</i> 94, 313-316, doi: 10.1175/BAMS-D-11-00228.1.</p>
+</p>
+<p><strong>Sponsors of the 2011 Rainfall Atlas of Hawaiʻi.</strong> The 2011 Rainfall Atlas of Hawai&lsquo;i was developed under an agreement between the State of Hawai<strong>ʻ</strong>i Commission on Water Resource Management and the U.S. Army Corps of Engineers, Honolulu District under Section 22 of the Water Resources Development Act of 1974.</p>
+<p><strong>No Warranty.</strong> We have made every effort to make all images, maps, graphs, data, and other information provided on this web site accurate and error-free. However, we do not guarantee the accuracy of any images, maps, graphs, data, or other information. All content is provided without warranty of any kind.</p>
+<p style="text-align:right;"><input type="checkbox" id="readCoU" name="readCoU" /> <label for="readCoU">Do Not Show This Again</label></p>
+</div></p>
+          </div>
+        </div>
+        <div id="footer" class="aug clearfix">
+          <address>
+            &copy;2011 <a href="http://www.geography.hawaii.edu/">Geography Department</a> - <a href="http://www.manoa.hawaii.edu/">University of Hawai&#699;i at M&#257;noa<a/><!--<a href="http://www.uhm.hawaii.edu/"  target="_blank"><img src="assets/templates/rainfallatlas/uhm.gif" title="University of Hawai`i Manoa" alt="University of Hawai`i Manoa" /></a>-->
+          </address>
+          <ul id="logos">
+            <li><a href="http://hawaii.gov/dlnr/cwrm/" target="_blank"><img src="assets/images/cwrm.png" title="Commission on Water Resource Management, Department of Land and Natural Resources." alt="Commission on Water Resource Management, Department of Land and Natural Resources." /></a></li>
+            <li><a href="http://www.uhm.hawaii.edu/" target="_blank"><img src="assets/images/Manoa-seal.png" title="University of Hawai`i Manoa" alt="University of Hawai`i Manoa" /></a></li>
+
+          </ul>
+         <div id="fundinginfo">
+         <p>Contact Us: <a href="mailto:rainfall@hawaii.edu">rainfall@hawaii.edu</a> - <a href="#disclaimer2" class="call_disclaimer2">Conditions of Use</a><br/>This website is hosted by the EPSCoR Hawaii Geospatial Data Repository.</p>
+         </div>
+<div id="disclaimer2" class="disclaimer" title="Please Read"><h2>Conditions of Use</h2>
+<p>All maps, data, graphs, and narrative material available on this web site are subject to the following conditions.</p>
+<p><strong>Images.</strong> All color and isohyet rainfall map images presented here are available for reproduction and distribution. The map source must be included in any reproduction. </p>
+<p><strong>Gridded Map and Tabular Data.</strong> All gridded and tabular data and all other data presented here are available for reproduction and distribution for non-commercial use. The data source must be prominently stated whenever presenting these data in any form or any product derived in whole or part from these data.</p>
+<p><strong>Crediting the Source.</strong> Any reproduction or use of the images, maps, graphs, data, other information, or any product derived in whole or part from these data must credit the source in the following manner:</p>
+<p>
+<p style="padding: 0 2em 0;">Giambelluca, T.W., Q. Chen, A.G. Frazier, J.P. Price, Y.-L. Chen, P.-S. Chu, J.K. Eischeid, and D.M. Delparte, 2013: Online Rainfall Atlas of Hawai‘i.  <i>Bull. Amer. Meteor. Soc.</i> 94, 313-316, doi: 10.1175/BAMS-D-11-00228.1.</p>
+</p>
+<p><strong>Sponsors of the 2011 Rainfall Atlas of Hawaiʻi.</strong> The 2011 Rainfall Atlas of Hawai&lsquo;i was developed under an agreement between the State of Hawai<strong>ʻ</strong>i Commission on Water Resource Management and the U.S. Army Corps of Engineers, Honolulu District under Section 22 of the Water Resources Development Act of 1974.</p>
+<p><strong>No Warranty.</strong> We have made every effort to make all images, maps, graphs, data, and other information provided on this web site accurate and error-free. However, we do not guarantee the accuracy of any images, maps, graphs, data, or other information. All content is provided without warranty of any kind.</p></div>
+       </div>
+      </div>
+    </body>
+  </html>
